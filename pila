@@ -1,1 +1,54 @@
-Pila Y Colas
+import java.util.ArrayList;
+import java.util.List;
+
+class Pila<T> {
+    private List<T> items;
+
+    public Pila() {
+        items = new ArrayList<>();
+    }
+
+    public void push(T elemento) {
+        items.add(elemento);
+        System.out.println("Push: " + elemento);
+    }
+
+    public T pop() {
+        if (isEmpty()) {
+            System.out.println("Error: La pila está vacía.");
+            return null;
+        }
+        // Elimina y devuelve el último elemento
+        return items.remove(items.size() - 1);
+    }
+
+    public T peek() {
+        if (isEmpty()) {
+            return null;
+        }
+        return items.get(items.size() - 1);
+    }
+
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+
+    public void mostrar() {
+        System.out.println("Pila (base -> cima): " + items);
+    }
+}
+
+// --- Ejemplo de Uso ---
+public class MainPila {
+    public static void main(String[] args) {
+        Pila<Integer> pila = new Pila<>();
+        pila.push(10);
+        pila.push(20);
+        pila.push(30);
+        pila.mostrar(); // [10, 20, 30]
+
+        System.out.println("Cima actual (peek): " + pila.peek()); // 30
+        System.out.println("Elemento eliminado (pop): " + pila.pop()); // 30
+        pila.mostrar(); // [10, 20]
+    }
+}
